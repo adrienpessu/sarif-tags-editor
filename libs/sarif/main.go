@@ -249,6 +249,20 @@ func SearchAndAssignOrReplaceTags(sarifInput string, searchedTags []string, addT
 	var runs = make([]Runs, 0)
 
 	for _, run := range structuredSarif.Runs {
+		resultToAdd := []Result{}
+		for _, result := range run.Results {
+			if result.Locations[0].PhysicalLocation.Region.StartLine < 0 {
+				result.Locations[0].PhysicalLocation.Region.StartLine = 1
+			}
+			if result.Locations[0].PhysicalLocation.Region.StartColumn < 0 {
+				result.Locations[0].PhysicalLocation.Region.StartColumn = 1
+			}
+			if result.Locations[0].PhysicalLocation.Region.EndColumn < 0 {
+				result.Locations[0].PhysicalLocation.Region.EndColumn = 1
+			}
+			resultToAdd = append(resultToAdd, result)
+		}
+
 		extensionsToAdd := []Extension{}
 		for _, extensions := range run.Tool.Extensions {
 			rulesToAdd := []ExtensionRule{}
@@ -276,6 +290,7 @@ func SearchAndAssignOrReplaceTags(sarifInput string, searchedTags []string, addT
 			extensionsToAdd = append(extensionsToAdd, extensions)
 		}
 		run.Tool.Extensions = extensionsToAdd
+		run.Results = resultToAdd
 		runs = append(runs, run)
 	}
 	structuredSarif.Runs = runs
