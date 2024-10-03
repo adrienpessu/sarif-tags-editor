@@ -3,6 +3,7 @@ package sarif
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 )
 
 type Sarif struct {
@@ -257,7 +258,7 @@ func SearchAndAssignOrReplaceTags(sarifInput string, searchedTags []string, addT
 				tags := rule.Properties.Tags
 				newTags := []string{}
 				if contains(tags, searchedTags) {
-					println("tags: ", tags)
+					println("tags: ", strings.Join(tags, ","))
 
 					// remove the removeTags
 					for _, tag := range tags {
