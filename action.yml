@@ -1,0 +1,35 @@
+name: 'SARIF tags editor'
+description: 'Change tags in SARIF files'
+inputs:
+  sarif-file-source:
+    description: 'Source of the SARIF file'
+    required: true
+    default: ''
+  sarif-file-destination:
+    description: 'Save the SARIF file to the specified path'
+    required: true
+    default: ''
+  filters-tags:
+    description: 'Tags to filter the alerts (separate by commas)'
+    required: true
+    default: ''
+  add-tags:
+    description: 'Tags to add to the alerts (separate by commas)'
+    required: true
+    default: ''
+  remove-tags:
+    description: 'Tags to remove from the alerts (separate by commas)'
+    required: false
+    default: false
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-go@v5.0.2
+      with:
+        go-version: '1.20.4'
+
+    - run: go run ${{ github.action_path }}/cli/main.go --sarif-file-source ${{ inputs.sarif-file-source }} --sarif-file-destination ${{ inputs.sarif-file-destination }} --filters-tags ${{ inputs.filters-tags }} --add-tags ${{ inputs.add-tags }} --remove-tags ${{ inputs.remove-tags }}
+      shell: bash
+branding:
+  icon: 'lock'
+  color: 'yellow'
