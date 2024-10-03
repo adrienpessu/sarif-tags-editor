@@ -28,7 +28,7 @@ runs:
       with:
         go-version: '1.22'
 
-    - run: cd ${{ github.action_path }} && go run ./cli --sarif-file-source ${{ inputs.sarif-file-source }} --sarif-file-destination ${{ github.action_path }}/${{ inputs.sarif-file-destination }} --filters-tags ${{ inputs.filters-tags }} --add-tags ${{ inputs.add-tags }} --remove-tags ${{ inputs.remove-tags }}
+    - run: cd ${{ github.action_path }} && go run ./cli --sarif-file-source ${{ inputs.sarif-file-source }} --sarif-file-destination ${{ inputs.sarif-file-destination }} --filters-tags ${{ inputs.filters-tags }} --add-tags ${{ inputs.add-tags }} --remove-tags ${{ inputs.remove-tags }}
       shell: bash
 branding:
   icon: 'lock'
