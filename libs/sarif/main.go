@@ -143,18 +143,8 @@ type Extension struct {
 }
 
 type ExtensionRule struct {
-	ID               string `json:"id"`
-	Name             string `json:"name"`
-	ShortDescription struct {
-		Text string `json:"text"`
-	}
-	FullDescription struct {
-		Text string `json:"text"`
-	}
-	Help struct {
-		Text     string `json:"text"`
-		Markdown string `json:"markdown"`
-	}
+	ID         string                  `json:"id"`
+	Name       string                  `json:"name"`
 	Properties ExtensionRuleProperties `json:"properties"`
 }
 
