@@ -6,234 +6,234 @@ import (
 )
 
 type Sarif struct {
-	Schema  string `json:"$schema"`
-	Version string `json:"version"`
-	Runs    []Runs `json:"runs"`
+	Schema  string `json:"$schema,omitempty"`
+	Version string `json:"version,omitempty"`
+	Runs    []Runs `json:"runs,omitempty"`
 }
 type Runs struct {
 	Tool struct {
 		Driver struct {
-			Name            string `json:"name"`
-			Organization    string `json:"organization"`
-			SemanticVersion string `json:"semanticVersion"`
+			Name            string `json:"name,omitempty"`
+			Organization    string `json:"organization,omitempty"`
+			SemanticVersion string `json:"semanticVersion,omitempty"`
 			Notifications   []struct {
-				ID               string `json:"id"`
-				Name             string `json:"name"`
+				ID               string `json:"id,omitempty"`
+				Name             string `json:"name,omitempty"`
 				ShortDescription struct {
-					Text string `json:"text"`
-				} `json:"shortDescription"`
+					Text string `json:"text,omitempty"`
+				} `json:"shortDescription,omitempty"`
 				FullDescription struct {
-					Text string `json:"text"`
-				} `json:"fullDescription"`
+					Text string `json:"text,omitempty"`
+				} `json:"fullDescription,omitempty"`
 				DefaultConfiguration struct {
-					Enabled bool `json:"enabled"`
-				} `json:"defaultConfiguration"`
+					Enabled bool `json:"enabled,omitempty"`
+				} `json:"defaultConfiguration,omitempty"`
 				Properties struct {
-					Description string `json:"description"`
-					ID          string `json:"id"`
-					Kind        string `json:"kind"`
-					Name        string `json:"name"`
-				} `json:"properties,omitempty"`
+					Description string `json:"description,omitempty"`
+					ID          string `json:"id,omitempty"`
+					Kind        string `json:"kind,omitempty"`
+					Name        string `json:"name,omitempty"`
+				} `json:"properties,omitempty,omitempty"`
 				Properties0 struct {
-					Tags        []string `json:"tags"`
-					Description string   `json:"description"`
-					ID          string   `json:"id"`
-					Kind        string   `json:"kind"`
-					Name        string   `json:"name"`
+					Tags        []string `json:"tags,omitempty"`
+					Description string   `json:"description,omitempty"`
+					ID          string   `json:"id,omitempty"`
+					Kind        string   `json:"kind,omitempty"`
+					Name        string   `json:"name,omitempty"`
 				} `json:"properties,omitempty"`
-			} `json:"notifications"`
+			} `json:"notifications,omitempty"`
 			Rules []struct {
-				ID               string `json:"id"`
-				Name             string `json:"name"`
+				ID               string `json:"id,omitempty"`
+				Name             string `json:"name,omitempty"`
 				ShortDescription struct {
-					Text string `json:"text"`
-				} `json:"shortDescription"`
+					Text string `json:"text,omitempty"`
+				} `json:"shortDescription,omitempty"`
 				FullDescription struct {
-					Text string `json:"text"`
-				} `json:"fullDescription"`
+					Text string `json:"text,omitempty"`
+				} `json:"fullDescription,omitempty"`
 				DefaultConfiguration struct {
-					Enabled bool   `json:"enabled"`
-					Level   string `json:"level"`
+					Enabled bool   `json:"enabled,omitempty"`
+					Level   string `json:"level,omitempty"`
 				} `json:"defaultConfiguration,omitempty"`
 				Help struct {
-					Text     string `json:"text"`
-					Markdown string `json:"markdown"`
+					Text     string `json:"text,omitempty"`
+					Markdown string `json:"markdown,omitempty"`
 				} `json:"help,omitempty"`
 				Properties struct {
-					Tags             []string `json:"tags"`
-					Description      string   `json:"description"`
-					ID               string   `json:"id"`
-					Kind             string   `json:"kind"`
-					Name             string   `json:"name"`
-					Precision        string   `json:"precision"`
-					ProblemSeverity  string   `json:"problem.severity"`
-					SecuritySeverity string   `json:"security-severity"`
+					Tags             []string `json:"tags,omitempty"`
+					Description      string   `json:"description,omitempty"`
+					ID               string   `json:"id,omitempty"`
+					Kind             string   `json:"kind,omitempty"`
+					Name             string   `json:"name,omitempty"`
+					Precision        string   `json:"precision,omitempty"`
+					ProblemSeverity  string   `json:"problem.severity,omitempty"`
+					SecuritySeverity string   `json:"security-severity,omitempty"`
 				} `json:"properties,omitempty"`
-			} `json:"rules"`
+			} `json:"rules,omitempty"`
 		} `json:"driver"`
-		Extensions []Extension `json:"extensions"`
-	} `json:"tool"`
+		Extensions []Extension `json:"extensions,omitempty"`
+	} `json:"tool,omitempty"`
 	Invocations []struct {
 		ToolExecutionNotifications []struct {
 			Message struct {
-				Text string `json:"text"`
-			} `json:"message"`
+				Text string `json:"text,omitempty"`
+			} `json:"message,omitempty"`
 			Descriptor struct {
-				ID    string `json:"id"`
-				Index int    `json:"index"`
-			} `json:"descriptor"`
+				ID    string `json:"id,omitempty"`
+				Index int    `json:"index,omitempty"`
+			} `json:"descriptor,omitempty"`
 			Properties struct {
 				FormattedMessage struct {
-					Text string `json:"text"`
-				} `json:"formattedMessage"`
-			} `json:"properties"`
+					Text string `json:"text,omitempty"`
+				} `json:"formattedMessage,omitempty"`
+			} `json:"properties,omitempty"`
 			Locations []struct {
 				PhysicalLocation struct {
 					ArtifactLocation struct {
-						URI       string `json:"uri"`
-						URIBaseID string `json:"uriBaseId"`
-						Index     int    `json:"index"`
-					} `json:"artifactLocation"`
-				} `json:"physicalLocation"`
-			} `json:"locations,omitempty"`
-			Level string `json:"level,omitempty"`
-		} `json:"toolExecutionNotifications"`
-		ExecutionSuccessful bool `json:"executionSuccessful"`
-	} `json:"invocations"`
+						URI       string `json:"uri,omitempty"`
+						URIBaseID string `json:"uriBaseId,omitempty"`
+						Index     int    `json:"index,omitempty"`
+					} `json:"artifactLocation,omitempty"`
+				} `json:"physicalLocation,omitempty"`
+			} `json:"locations,omitempty,omitempty"`
+			Level string `json:"level,omitempty,omitempty"`
+		} `json:"toolExecutionNotifications,omitempty"`
+		ExecutionSuccessful bool `json:"executionSuccessful,omitempty"`
+	} `json:"invocations,omitempty"`
 	Artifacts []struct {
 		Location struct {
-			URI       string `json:"uri"`
-			URIBaseID string `json:"uriBaseId"`
-			Index     int    `json:"index"`
-		} `json:"location"`
-	} `json:"artifacts"`
-	Results           []Result `json:"results"`
+			URI       string `json:"uri,omitempty"`
+			URIBaseID string `json:"uriBaseId,omitempty"`
+			Index     int    `json:"index,omitempty"`
+		} `json:"location,omitempty"`
+	} `json:"artifacts,omitempty"`
+	Results           []Result `json:"results,omitempty"`
 	AutomationDetails struct {
-		ID string `json:"id"`
-	} `json:"automationDetails"`
-	ColumnKind string `json:"columnKind"`
+		ID string `json:"id,omitempty"`
+	} `json:"automationDetails,omitempty"`
+	ColumnKind string `json:"columnKind,omitempty"`
 	Properties struct {
 		MetricResults []struct {
 			Rule struct {
-				ID    string `json:"id"`
-				Index int    `json:"index"`
-			} `json:"rule"`
-			RuleID    string `json:"ruleId"`
-			RuleIndex int    `json:"ruleIndex"`
-			Value     int    `json:"value"`
+				ID    string `json:"id,omitempty"`
+				Index int    `json:"index,omitempty"`
+			} `json:"rule,omitempty"`
+			RuleID    string `json:"ruleId,omitempty"`
+			RuleIndex int    `json:"ruleIndex,omitempty"`
+			Value     int    `json:"value,omitempty"`
 			Message   struct {
-				Text string `json:"text"`
+				Text string `json:"text,omitempty"`
 			} `json:"message,omitempty"`
 			Baseline int `json:"baseline,omitempty"`
 		} `json:"metricResults"`
 		SemmleFormatSpecifier string `json:"semmle.formatSpecifier"`
-	} `json:"properties"`
+	} `json:"properties,omitempty"`
 }
 
 type Extension struct {
-	Name            string          `json:"name"`
-	SemanticVersion string          `json:"semanticVersion"`
-	Rules           []ExtensionRule `json:"rules"`
+	Name            string          `json:"name,omitempty"`
+	SemanticVersion string          `json:"semanticVersion,omitempty"`
+	Rules           []ExtensionRule `json:"rules,omitempty"`
 	Locations       []struct {
-		URI         string `json:"uri"`
+		URI         string `json:"uri,omitempty"`
 		Description struct {
-			Text string `json:"text"`
-		} `json:"description"`
-	} `json:"locations"`
+			Text string `json:"text,omitempty"`
+		} `json:"description,omitempty"`
+	} `json:"locations,omitempty"`
 }
 
 type ExtensionRule struct {
-	ID         string                  `json:"id"`
-	Name       string                  `json:"name"`
-	Properties ExtensionRuleProperties `json:"properties"`
+	ID         string                  `json:"id,omitempty"`
+	Name       string                  `json:"name,omitempty"`
+	Properties ExtensionRuleProperties `json:"properties,omitempty"`
 }
 
 type ExtensionRuleProperties struct {
-	Tags            []string `json:"tags"`
-	Description     string   `json:"description"`
-	ID              string   `json:"id"`
-	Kind            string   `json:"kind"`
-	Name            string   `json:"name"`
-	Precision       string   `json:"precision"`
-	ProblemSeverity string   `json:"problem.severity"`
+	Tags            []string `json:"tags,omitempty"`
+	Description     string   `json:"description,omitempty"`
+	ID              string   `json:"id,omitempty"`
+	Kind            string   `json:"kind,omitempty"`
+	Name            string   `json:"name,omitempty"`
+	Precision       string   `json:"precision,omitempty"`
+	ProblemSeverity string   `json:"problem.severity,omitempty"`
 }
 
 type Fixes struct {
-	Description FixesDescription `json:"description"`
+	Description FixesDescription `json:"description,omitempty"`
 }
 
 type FixesDescription struct {
-	Text string `json:"text"`
+	Text string `json:"text,omitempty"`
 }
 
 type Result struct {
-	RuleID    string `json:"ruleId"`
-	RuleIndex int    `json:"ruleIndex"`
+	RuleID    string `json:"ruleId,omitempty"`
+	RuleIndex int    `json:"ruleIndex,omitempty"`
 	Rule      struct {
-		ID    string `json:"id"`
-		Index int    `json:"index"`
-	} `json:"rule"`
+		ID    string `json:"id,omitempty"`
+		Index int    `json:"index,omitempty"`
+	} `json:"rule,omitempty"`
 	Message struct {
-		Text string `json:"text"`
-	} `json:"message"`
+		Text string `json:"text,omitempty"`
+	} `json:"message,omitempty"`
 	Locations []struct {
 		PhysicalLocation struct {
 			ArtifactLocation struct {
-				URI       string `json:"uri"`
-				URIBaseID string `json:"uriBaseId"`
-				Index     int    `json:"index"`
-			} `json:"artifactLocation"`
+				URI       string `json:"uri,omitempty"`
+				URIBaseID string `json:"uriBaseId,omitempty"`
+				Index     int    `json:"index,omitempty"`
+			} `json:"artifactLocation,omitempty"`
 			Region struct {
-				StartLine   int `json:"startLine"`
-				StartColumn int `json:"startColumn"`
-				EndColumn   int `json:"endColumn"`
-			} `json:"region"`
-		} `json:"physicalLocation"`
-	} `json:"locations"`
+				StartLine   int `json:"startLine,omitempty"`
+				StartColumn int `json:"startColumn,omitempty"`
+				EndColumn   int `json:"endColumn,omitempty"`
+			} `json:"region,omitempty"`
+		} `json:"physicalLocation,omitempty"`
+	} `json:"locations,omitempty"`
 	PartialFingerprints struct {
-		PrimaryLocationLineHash               string `json:"primaryLocationLineHash"`
-		PrimaryLocationStartColumnFingerprint string `json:"primaryLocationStartColumnFingerprint"`
-	} `json:"partialFingerprints"`
+		PrimaryLocationLineHash               string `json:"primaryLocationLineHash,omitempty"`
+		PrimaryLocationStartColumnFingerprint string `json:"primaryLocationStartColumnFingerprint,omitempty"`
+	} `json:"partialFingerprints,omitempty"`
 	RelatedLocations []struct {
-		ID               int `json:"id"`
+		ID               int `json:"id,omitempty"`
 		PhysicalLocation struct {
 			ArtifactLocation struct {
-				URI       string `json:"uri"`
-				URIBaseID string `json:"uriBaseId"`
-				Index     int    `json:"index"`
-			} `json:"artifactLocation"`
+				URI       string `json:"uri,omitempty"`
+				URIBaseID string `json:"uriBaseId,omitempty"`
+				Index     int    `json:"index,omitempty"`
+			} `json:"artifactLocation,omitempty"`
 			Region struct {
-				StartLine   int `json:"startLine"`
-				StartColumn int `json:"startColumn"`
-				EndColumn   int `json:"endColumn"`
-			} `json:"region"`
-		} `json:"physicalLocation"`
+				StartLine   int `json:"startLine,omitempty"`
+				StartColumn int `json:"startColumn,omitempty"`
+				EndColumn   int `json:"endColumn,omitempty"`
+			} `json:"region,omitempty"`
+		} `json:"physicalLocation,omitempty"`
 		Message struct {
-			Text string `json:"text"`
-		} `json:"message"`
-	} `json:"relatedLocations,omitempty"`
+			Text string `json:"text,omitempty"`
+		} `json:"message,omitempty"`
+	} `json:"relatedLocations,omitempty,omitempty"`
 	CodeFlows []struct {
 		ThreadFlows []struct {
 			Locations []struct {
 				Location struct {
 					PhysicalLocation struct {
 						ArtifactLocation struct {
-							URI       string `json:"uri"`
-							URIBaseID string `json:"uriBaseId"`
-							Index     int    `json:"index"`
-						} `json:"artifactLocation"`
+							URI       string `json:"uri,omitempty"`
+							URIBaseID string `json:"uriBaseId,omitempty"`
+							Index     int    `json:"index,omitempty"`
+						} `json:"artifactLocation,omitempty"`
 						Region struct {
-							StartLine   int `json:"startLine"`
-							StartColumn int `json:"startColumn"`
-							EndColumn   int `json:"endColumn"`
-						} `json:"region"`
-					} `json:"physicalLocation"`
+							StartLine   int `json:"startLine,omitempty"`
+							StartColumn int `json:"startColumn,omitempty"`
+							EndColumn   int `json:"endColumn,omitempty"`
+						} `json:"region,omitempty"`
+					} `json:"physicalLocation,omitempty"`
 					Message struct {
-						Text string `json:"text"`
-					} `json:"message"`
-				} `json:"location"`
-			} `json:"locations"`
-		} `json:"threadFlows"`
+						Text string `json:"text,omitempty"`
+					} `json:"message,omitempty"`
+				} `json:"location,omitempty"`
+			} `json:"locations,omitempty"`
+		} `json:"threadFlows,omitempty"`
 	} `json:"codeFlows,omitempty"`
 	Fixes []Fixes `json:"fixes,omitempty"`
 }
