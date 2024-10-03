@@ -45,6 +45,7 @@ func main() {
 			fmt.Println(err)
 			return
 		}
+		fmt.Println("SARIF file has been written to: ", *sarifFileDestination)
 
 	} else {
 		fmt.Println("You need to provide a SARIF file source, a SARIF file destination, filters tags and assigned tags")
