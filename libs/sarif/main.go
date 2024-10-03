@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"strings"
+	"time"
 )
 
 type Sarif struct {
@@ -76,30 +77,31 @@ type Runs struct {
 	} `json:"tool,omitempty"`
 	Invocations []struct {
 		ToolExecutionNotifications []struct {
-			Message struct {
-				Text string `json:"text,omitempty"`
-			} `json:"message,omitempty"`
-			Descriptor struct {
-				ID    string `json:"id,omitempty"`
-				Index int    `json:"index,omitempty"`
-			} `json:"descriptor,omitempty"`
-			Properties struct {
-				FormattedMessage struct {
-					Text string `json:"text,omitempty"`
-				} `json:"formattedMessage,omitempty"`
-			} `json:"properties,omitempty"`
 			Locations []struct {
 				PhysicalLocation struct {
 					ArtifactLocation struct {
-						URI       string `json:"uri,omitempty"`
-						URIBaseID string `json:"uriBaseId,omitempty"`
-						Index     int    `json:"index,omitempty"`
-					} `json:"artifactLocation,omitempty"`
-				} `json:"physicalLocation,omitempty"`
-			} `json:"locations,omitempty,omitempty"`
-			Level string `json:"level,omitempty,omitempty"`
-		} `json:"toolExecutionNotifications,omitempty"`
-		ExecutionSuccessful bool `json:"executionSuccessful,omitempty"`
+						URI       string `json:"uri"`
+						URIBaseID string `json:"uriBaseId"`
+						Index     int    `json:"index"`
+					} `json:"artifactLocation"`
+				} `json:"physicalLocation"`
+			} `json:"locations,omitempty"`
+			Message struct {
+				Text string `json:"text"`
+			} `json:"message"`
+			Level      string `json:"level"`
+			Descriptor struct {
+				ID    string `json:"id"`
+				Index int    `json:"index"`
+			} `json:"descriptor"`
+			Properties struct {
+				FormattedMessage struct {
+					Text string `json:"text"`
+				} `json:"formattedMessage"`
+			} `json:"properties"`
+			TimeUtc time.Time `json:"timeUtc,omitempty"`
+		} `json:"toolExecutionNotifications"`
+		ExecutionSuccessful bool `json:"executionSuccessful"`
 	} `json:"invocations,omitempty"`
 	Artifacts []struct {
 		Location struct {
